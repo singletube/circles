@@ -56,16 +56,20 @@ class MyWidget(QMainWindow, Ui_MainWindow):
             qp.begin(self)
             self.draw_flag(qp)
             qp.end()
+
     def paint(self):
         self.do_paint = True
         self.repaint()
+        self.do_paint = False
 
     def draw_flag(self, qp):
         for i in range(randint(1, 10)):
-            p = randint(0, 300)
-            h = randint(0, 300)
+            centerX = randint(0, 600)
+            radius = randint(0, 200)
+            centerY = randint(0, 600)
             qp.setBrush(QColor(255, 255, 0))
-            qp.drawEllipse(p, p, h, h)
+            qp.drawEllipse(centerX - radius, centerY - radius,
+                      radius + radius, radius + radius)
 
 def except_hook(cls, exception, traceback):
     sys.__excepthook__(cls, exception, traceback)
